@@ -54,7 +54,6 @@ class TopCommandService:
                       (71, 999)],  # COMMAND
             names=['PID', 'USER', 'PR', 'NI', 'VIRT', 'RES', 'SHR', 'CPU', 'MEM', 'TIME', 'COMMAND'])
         responseDataByCpu = SliceData.sliceFirstTenData(df)
-        print(responseDataByCpu)
         return responseDataByCpu
 
     @staticmethod
