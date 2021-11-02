@@ -1,60 +1,13 @@
 <script>
-  import { onMount } from "svelte";
-  import GetMemory from "./api/getMemory";
-  import GetCpu from "./api/getCpu";
+  import Particles from "svelte-particles";
 
-  let memoryData;
-  let cpuData = [];
-  onMount(() => {
-    setInterval(async () => {
-      memoryData = await GetMemory();
-      cpuData = await GetCpu();
-    }, 1000);
-    cpuData = cpuData;
-  });
-  $: console.log(cpuData);
-
-  const tableList = [
-    "PID",
-    "USER",
-    "PR",
-    "NI",
-    "VIRT",
-    "RES",
-    "SHR",
-    "CPU",
-    "MEM",
-    "TIME",
-    "COMMAND",
-  ];
+  import DataTable from "./components/DataTable.svelte";
 </script>
 
-<table>
-  <tr>
-    {#each tableList as item}
-      <th>{item}</th>
-    {/each}
-  </tr>
-  {#each cpuData as cpu}
-    <tr>
-      <td>{cpu.PID}</td>
-      <td>{cpu.USER}</td>
-      <td>{cpu.PR}</td>
-      <td>{cpu.NI}</td>
-      <td>{cpu.VIRT}</td>
-      <td>{cpu.RES}</td>
-      <td>{cpu.SHR}</td>
-      <td>{cpu.CPU}</td>
-      <td>{cpu.MEM}</td>
-      <td>{cpu.TIME}</td>
-      <td>{cpu.COMMAND}</td>
-    </tr>
-  {/each}
-</table>
+<DataTable />
 
-<!-- <style>
-  td {
-    justify-items: center;
-    padding: 45px;
-  }
-</style> -->
+<style global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+</style>
