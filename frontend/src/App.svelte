@@ -1,6 +1,4 @@
 <script>
-  import Particles from "svelte-particles";
-
   import DataTable from "./components/DataTable.svelte";
 </script>
 
