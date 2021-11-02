@@ -9,7 +9,7 @@
     setInterval(async () => {
       memoryData = await GetMemory();
       cpuData = await GetCpu();
-    }, 1000);
+    }, 3000);
     cpuData = cpuData;
   });
   $: console.log(cpuData);

@@ -1,5 +1,5 @@
 from flask_cors import cross_origin
-from flask import Flask, jsonify, request
+from flask import jsonify, request
 from service.topCommandService import TopCommandService
 from service.listUsersService import ListUsersService
 
@@ -13,7 +13,6 @@ def topCommandByMemory():
 @cross_origin()
 def topCommandByCpu():
     topCpuResponse = TopCommandService.cpuFunc()
-    print(type(topCpuResponse))
     return jsonify(topCpuResponse)
 
 
