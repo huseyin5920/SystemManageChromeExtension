@@ -1,21 +1,21 @@
 <script>
   import { onMount } from "svelte";
 
-  import GetCpu from "../api/getCpu";
-  import GetMemory from "../api/getMemory";
+  import GetCpu from "../api/CpuMemoryComponent/getCpu";
+  import GetMemory from "../api/CpuMemoryComponent/getMemory";
 
   import Fa from "svelte-fa";
-  import { faFlag } from "@fortawesome/free-solid-svg-icons";
+  import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 
   let tableData = [];
-  onMount(() => {
-    setInterval(async () => {
+  let interval;
+  onMount(async () => {
+    tableData = await GetCpu();
+    interval = setInterval(async () => {
       tableData = await GetCpu();
-    }, 1000);
+    }, 3000);
     tableData = tableData;
   });
-
-  $: console.log(tableData);
 
   const tableList = [
     { name: "PID", isSelected: false },
@@ -31,7 +31,17 @@
     { name: "COMMAND", isSelected: false },
   ];
 
-  const selectTypeOfData = (el) => {
+  const selectTypeOfData = async (el) => {
+    clearInterval(interval);
+    el.name === "CPU"
+      ? (tableData = await GetCpu())
+      : (tableData = await GetMemory());
+    interval = setInterval(async () => {
+      el.name === "CPU"
+        ? (tableData = await GetCpu())
+        : (tableData = await GetMemory());
+    }, 3000);
+
     tableList.forEach((item) => {
       item.isSelected = false;
     });
@@ -39,14 +49,18 @@
 
     tableList = tableList;
   };
+
+  const killProcess = async (pid) => {
+    console.log(pid);
+  };
 </script>
 
-<div class="border rounded m-5 w-3/5 shadow-2xl text-center">
-  <div class="grid grid-cols-11 border-b-2 p-2 font-bold text-xs">
+<div class="border-2 rounded m-2 shadow-2xl text-center">
+  <div class=" grid grid-cols-12 border-b-2 p-2 font-bold text-xs">
     {#each tableList as el}
       {#if el.name == "MEM" || el.name == "CPU"}
         <div
-          class:bg-gray-200={el.isSelected}
+          class:border-b-2={el.isSelected}
           on:click={() => selectTypeOfData(el)}
           class="text-center cursor-pointer"
         >
@@ -58,8 +72,11 @@
     {/each}
   </div>
   <div class="text-xs">
-    {#each tableData as data}
-      <div class="grid grid-cols-11 border-b-2 p-2 max-h-8 overflow-hidden">
+    {#each tableData as data, i}
+      <div
+        class:border-b-2={i != tableData.length - 1}
+        class="grid grid-cols-12  p-2 max-h-8 overflow-hidden text-center items-center"
+      >
         <div>{data.PID}</div>
         <div>{data.USER}</div>
         <div>{data.PR}</div>
@@ -70,7 +87,17 @@
         <div>{data.CPU}</div>
         <div>{data.MEM}</div>
         <div>{data.TIME}</div>
-        <div>{data.COMMAND}</div>
+        <div>
+          {data.COMMAND.length > 10
+            ? `${data.COMMAND.substr(0, 7)}...`
+            : data.COMMAND}
+        </div>
+        <div
+          on:click={() => killProcess(data.PID)}
+          class="text-red-600 cursor-pointer mx-auto"
+        >
+          <Fa size="16" icon={faMinusCircle} />
+        </div>
       </div>
     {/each}
   </div>

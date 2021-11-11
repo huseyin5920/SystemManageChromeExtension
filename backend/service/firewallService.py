@@ -6,10 +6,10 @@ class FirewallService:
     def firewallStatus():
         firewallStatusOutput = subprocess.check_output(["sudo", "ufw", "status"])
         print(firewallStatusOutput[:14])
-        if firewallStatusOutput[:14].decode() == "Status: active":
-            return "active"
-        else:
+        if firewallStatusOutput[:14].decode() == "Status: inactive":
             return "inactive"
+        else:
+            return "active"
         # return firewallStatusOutput.decode()
 
     def firewallDisable():

@@ -5,12 +5,12 @@ from flask import jsonify
 class CreateDictForSystemInfo:
     def createJsonObjectForSystemInfo(uname):
         systemInfoDict = {}
-        systemInfoDict["System"] = uname.system
-        systemInfoDict["Node Name"] = uname.node
-        systemInfoDict["Release"] = uname.release
-        systemInfoDict["Version"] = uname.version
-        systemInfoDict["Machine"] = uname.machine
-        systemInfoDict["Processor"] = uname.processor
+        systemInfoDict["system"] = uname.system
+        systemInfoDict["nodeName"] = uname.node
+        systemInfoDict["release"] = uname.release
+        systemInfoDict["version"] = uname.version
+        systemInfoDict["machine"] = uname.machine
+        systemInfoDict["processor"] = uname.processor
         json_dump = json.dumps(systemInfoDict)
         json_object = json.loads(json_dump)
         return json_object
