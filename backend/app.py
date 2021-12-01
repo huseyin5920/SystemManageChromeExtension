@@ -7,13 +7,16 @@ from api import (
     listUsersApi,
     firewallApi,
     systemInfoApi,
-)
+    userDelCreApi,
+    launchAppApi,
+    pingControlApi,
+    basicDiskInfoApi,
+    processControlApi
 
-from service.networkInfosService import NetworkInfosService
+)
 
 app = Flask("app")
 
-NetworkInfosService()
 
 app.add_url_rule(
     "/memory", view_func=topCommandApi.topCommandByMemory, methods=["GET"]
@@ -69,5 +72,28 @@ app.add_url_rule(
     "/systemGpuInfo", view_func=systemInfoApi.getSystemGpuInfo, methods=["GET"]
 )  # made in frontend
 
+app.add_url_rule(
+    "/createUser", view_func=userDelCreApi.createUser, methods=["POST"]
+)
+
+app.add_url_rule(
+    "/deleteUser", view_func=userDelCreApi.createUser, methods=["POST"]
+)
+
+app.add_url_rule(
+    "/launchApp", view_func=launchAppApi.launchApp, methods=["POST"]
+)
+
+app.add_url_rule(
+    "/pingControl", view_func=pingControlApi.getpingInfo, methods=["POST"]
+)
+
+app.add_url_rule(
+    "/basicDiskInfo", view_func=basicDiskInfoApi.basicDiskInfo, methods=["GET"]
+)
+
+app.add_url_rule(
+    "/checkProcessInfo", view_func=processControlApi.getProcessInfo, methods=["POST"]
+)
 if __name__ == "__main__":
     app.run(constants.FLASK_HOST, constants.FLASK_PORT, debug=True)
