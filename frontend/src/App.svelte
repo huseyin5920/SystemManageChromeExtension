@@ -1,7 +1,12 @@
 <script>
+  import CheckProcessInfo from "./components/CheckProcessInfo.svelte";
+
   import CpuMemoryDataTable from "./components/CpuMemoryDataTable.svelte";
+  import DiskUsage from "./components/DiskUsage.svelte";
   import Firewall from "./components/Firewall.svelte";
   import GeneralSystemInfo from "./components/GeneralSystemInfo.svelte";
+  import LiveNetworkTraffic from "./components/LiveNetworkTraffic.svelte";
+  import PingControl from "./components/PingControl.svelte";
   import SystemCpuInfo from "./components/SystemCpuInfo.svelte";
   import SystemGpuInfo from "./components/SystemGpuInfo/SystemGpuInfo.svelte";
   import SystemLiveCpuInfo from "./components/SystemLiveCpuInfo/SystemLiveCpuInfo.svelte";
@@ -22,15 +27,25 @@
   <div class="col-span-6">
     <SystemLiveCpuInfo />
   </div>
-  <!-- <div>
-    <Firewall />
-  </div> -->
+
   <div>
     <Users />
   </div>
   <div class="col-span-5 h-auto flex flex-col">
     <SystemNetworkInfo />
     <SystemGpuInfo />
+  </div>
+  <div class="col-span-4">
+    <div class="flex flex-col">
+      <PingControl />
+      <CheckProcessInfo />
+    </div>
+  </div>
+  <div class="col-span-4">
+    <DiskUsage />
+  </div>
+  <div class="col-span-4">
+    <LiveNetworkTraffic />
   </div>
 </div>
 

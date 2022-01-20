@@ -7,6 +7,7 @@
     import Widgets from "fusioncharts/fusioncharts.widgets";
     import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
     import SvelteFC, { fcRoot } from "svelte-fusioncharts";
+
     import RemoveTrialText from "./tools/removeTrialText.svelte";
 
     fcRoot(FusionCharts, Widgets, FusionTheme);

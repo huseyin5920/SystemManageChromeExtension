@@ -13,7 +13,7 @@ def createUser():
 
 
 @cross_origin()
-def createUser():
+def deleteUser():
     username = request.json["username"]
     responseDeleteUserService = CreateUserService.deleteUser(username)
     return responseDeleteUserService

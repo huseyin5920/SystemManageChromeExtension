@@ -98,7 +98,7 @@
 
         setInterval(async () => {
             renderComponent();
-        }, 1000);
+        }, 5000);
     });
 </script>
 

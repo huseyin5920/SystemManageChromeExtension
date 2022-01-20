@@ -13,6 +13,8 @@ def topCommandByMemory():
 @cross_origin()
 def topCommandByCpu():
     topCpuResponse = TopCommandService.cpuFunc()
+    # print(topCpuResponse)
+    # print(type(topCpuResponse))
     return jsonify(topCpuResponse)
 
 

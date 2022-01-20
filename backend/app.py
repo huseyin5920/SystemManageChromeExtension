@@ -77,7 +77,7 @@ app.add_url_rule(
 )
 
 app.add_url_rule(
-    "/deleteUser", view_func=userDelCreApi.createUser, methods=["POST"]
+    "/deleteUser", view_func=userDelCreApi.deleteUser, methods=["POST"]
 )
 
 app.add_url_rule(
