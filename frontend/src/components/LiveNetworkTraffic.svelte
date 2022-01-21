@@ -1,15 +1,17 @@
 <script>
-    import { onMount } from "svelte";
-
     import RemoveTrialText from "./tools/removeTrialText.svelte";
 
     //SECTION: SOCKET
 
-    const networkSocket = new WebSocket("ws://localhost:8765");
+    const networkSocket = new WebSocket("ws://192.168.30.72:8765");
 
     let liveNetworkdata;
 
-    let network1, network2, network3, network4;
+    let network1,
+        network2,
+        network3,
+        network4,
+        socketError = false;
 
     networkSocket.onopen = function () {
         setInterval(() => {
@@ -19,7 +21,6 @@
 
     networkSocket.onmessage = function (event) {
         liveNetworkdata = JSON.parse(event.data);
-        console.log(liveNetworkdata);
         network1 = Math.floor(liveNetworkdata?.wlp2s0[0] / 1024000);
         network2 = Math.floor(liveNetworkdata?.wlp2s0[1] / 1024000);
         network3 = Math.floor(liveNetworkdata?.wlp2s0[2] / 1024000);
@@ -79,6 +80,7 @@
     };
 
     networkSocket.onerror = function (error) {
+        socketError = true;
         console.log(error);
     };
 

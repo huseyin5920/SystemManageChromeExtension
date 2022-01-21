@@ -1,18 +1,24 @@
 <script>
-  import CheckProcessInfo from "./components/CheckProcessInfo.svelte";
+  import { SvelteToast } from "@zerodevx/svelte-toast";
 
+  import CheckProcessInfo from "./components/CheckProcessInfo.svelte";
   import CpuMemoryDataTable from "./components/CpuMemoryDataTable.svelte";
   import DiskUsage from "./components/DiskUsage.svelte";
   import Firewall from "./components/Firewall.svelte";
   import GeneralSystemInfo from "./components/GeneralSystemInfo.svelte";
+  import JournalLogs from "./components/JournalLogs.svelte";
   import LiveNetworkTraffic from "./components/LiveNetworkTraffic.svelte";
   import PingControl from "./components/PingControl.svelte";
+  import PortControl from "./components/PortControl.svelte";
+  import StartApp from "./components/StartApp.svelte";
   import SystemCpuInfo from "./components/SystemCpuInfo.svelte";
-  import SystemGpuInfo from "./components/SystemGpuInfo/SystemGpuInfo.svelte";
   import SystemLiveCpuInfo from "./components/SystemLiveCpuInfo/SystemLiveCpuInfo.svelte";
   import SystemNetworkInfo from "./components/SystemNetworkInfo.svelte";
   import Users from "./components/Users.svelte";
+  import WorkingApps from "./components/WorkingApps.svelte";
 </script>
+
+<SvelteToast />
 
 <div class="grid grid-cols-12 text-white">
   <div class="col-span-12">
@@ -27,25 +33,31 @@
   <div class="col-span-6">
     <SystemLiveCpuInfo />
   </div>
-
-  <div>
+  <div class="col-span-1">
     <Users />
   </div>
   <div class="col-span-5 h-auto flex flex-col">
     <SystemNetworkInfo />
-    <SystemGpuInfo />
+    <WorkingApps />
   </div>
   <div class="col-span-4">
     <div class="flex flex-col">
       <PingControl />
       <CheckProcessInfo />
+      <PortControl />
+      <StartApp />
     </div>
   </div>
-  <div class="col-span-4">
-    <DiskUsage />
-  </div>
-  <div class="col-span-4">
-    <LiveNetworkTraffic />
+  <div class="col-span-8 grid grid-cols-2">
+    <div class="col-span-1">
+      <DiskUsage />
+    </div>
+    <div class="col-span-1">
+      <LiveNetworkTraffic />
+    </div>
+    <div class="col-span-2">
+      <JournalLogs />
+    </div>
   </div>
 </div>
 
@@ -74,7 +86,7 @@
     height: 0px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #e1e1e1;
+    background: #9b2929;
     border: 0px none #ffffff;
     border-radius: 50px;
   }
@@ -85,7 +97,7 @@
     background: #000000;
   }
   ::-webkit-scrollbar-track {
-    background: #666666;
+    background: transparent;
     border: 0px none #ffffff;
     border-radius: 54px;
   }

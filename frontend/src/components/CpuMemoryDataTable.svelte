@@ -6,6 +6,7 @@
 
   import Fa from "svelte-fa";
   import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+  import KillPid from "../api/CpuMemoryComponent/killProcess";
 
   let tableData = [];
   let interval;
@@ -51,7 +52,8 @@
   };
 
   const killProcess = async (pid) => {
-    console.log(pid);
+    const res = await KillPid(pid);
+    res == "error" ? alert("System Processes can't be killed") : null;
   };
 </script>
 

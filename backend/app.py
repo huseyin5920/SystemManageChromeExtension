@@ -11,7 +11,9 @@ from api import (
     launchAppApi,
     pingControlApi,
     basicDiskInfoApi,
-    processControlApi
+    processControlApi,
+    killPidApi,
+    showOpenWindowApi
 
 )
 
@@ -94,6 +96,14 @@ app.add_url_rule(
 
 app.add_url_rule(
     "/checkProcessInfo", view_func=processControlApi.getProcessInfo, methods=["POST"]
+)
+
+app.add_url_rule(
+    "/killPid", view_func=killPidApi.killPid, methods=["POST"]
+)
+
+app.add_url_rule(
+    "/showOpenWindow", view_func=showOpenWindowApi.showOpenWindow, methods=["GET"]
 )
 if __name__ == "__main__":
     app.run(constants.FLASK_HOST, constants.FLASK_PORT, debug=True)

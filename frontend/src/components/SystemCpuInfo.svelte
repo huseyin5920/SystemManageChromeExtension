@@ -12,32 +12,14 @@
 
     fcRoot(FusionCharts, Widgets, FusionTheme);
 
-    const returnColor = (value) => {
-        if (value >= 80) {
-            return { textColor: "#8c0000", bgColor: "#fff" };
-        }
-        if (value >= 60) {
-            return { textColor: "#db0000", bgColor: "#fff" };
-        }
-        if (value >= 40) {
-            return { textColor: "#ff4242", bgColor: "#fff" };
-        }
-        if (value >= 20) {
-            return { textColor: "#e36f6f", bgColor: "#000" };
-        }
-        if (value >= 0) {
-            return { textColor: "#ffb8b8", bgColor: "#000" };
-        }
-    };
-
     let currentFrequency = 0;
 
     let dataSource = {
         chart: {
             bgColor: "#080e21",
             caption: "CPU Usage",
-            lowerLimit: "400.00",
-            upperLimit: "4900.00",
+            lowerLimit: "0.00",
+            upperLimit: "8.00",
             numberSuffix: "Mhz",
             theme: "fusion",
             baseFontSize: "11",
@@ -59,18 +41,23 @@
         colorRange: {
             color: [
                 {
-                    minValue: "400",
-                    maxValue: "2040",
-                    code: "#ff7878",
+                    minValue: "0",
+                    maxValue: "2",
+                    code: "#ff7a7a",
                 },
                 {
-                    minValue: "2040",
-                    maxValue: "3680",
-                    code: "#ff3b3b",
+                    minValue: "2",
+                    maxValue: "4",
+                    code: "#ff4d4d",
                 },
                 {
-                    minValue: "3680",
-                    maxValue: "4900",
+                    minValue: "4",
+                    maxValue: "6",
+                    code: "#fc2828",
+                },
+                {
+                    minValue: "6",
+                    maxValue: "8",
                     code: "#820000",
                 },
             ],

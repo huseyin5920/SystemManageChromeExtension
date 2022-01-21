@@ -1,13 +1,12 @@
 import axios from "axios"
 import { ip } from "../URL"
 
-let url = `${ip}/systemGpuInfo`
+let url = `${ip}/showOpenWindow`
 
-const GetSystemGpu = async () => {
+const WorkingApps = async () => {
     const response = await axios.get(
         url,
-
     )
     return response.data
 }
-export default GetSystemGpu
+export default WorkingApps

@@ -26,17 +26,4 @@
     .users {
         height: 534px;
     }
-    ::-webkit-scrollbar {
-        width: 2px;
-        height: 2px;
-    }
-    ::-webkit-scrollbar-button {
-        width: 0px;
-        height: 4px;
-    }
-    ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0);
-        border: 0px none #ffffff;
-        border-radius: 54px;
-    }
 </style>

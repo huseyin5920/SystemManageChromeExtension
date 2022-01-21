@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import GetSystemLiveCpuInfo from "../../api/SystemLiveCpuInfoComponent/getSystemLiveCpuInfo";
+    import { toast } from "@zerodevx/svelte-toast";
 
     import FusionCharts from "fusioncharts";
     import Charts from "fusioncharts/fusioncharts.charts";
@@ -8,6 +8,8 @@
     import SvelteFC, { fcRoot } from "svelte-fusioncharts";
     import TotalCpuInfo from "./TotalCpuInfo.svelte";
     import RemoveTrialText from "../tools/removeTrialText.svelte";
+
+    import GetSystemLiveCpuInfo from "../../api/SystemLiveCpuInfoComponent/getSystemLiveCpuInfo";
 
     fcRoot(FusionCharts, Charts, FusionTheme);
 
@@ -100,6 +102,15 @@
             renderComponent();
         }, 5000);
     });
+
+    $: if (cpuData.totalCpu >= 80) {
+        toast.push("Total CPU usage is over 80 percent!!", {
+            theme: {
+                "--toastBackground": "#F56565",
+                "--toastProgressBackground": "#C53030",
+            },
+        });
+    }
 </script>
 
 <div class="m-2 border-2 rounded test relative">

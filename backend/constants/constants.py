@@ -1,2 +1,2 @@
-FLASK_HOST = "localhost"
+FLASK_HOST = "0.0.0.0"
 FLASK_PORT = 5000
